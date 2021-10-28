@@ -1,0 +1,24 @@
+# Пакеты для запуска проекта
+flask
+Flask-SQLAlchemy
+Flask-Migrate
+
+# Для тестов
+pytest
+# генерация случайных данных
+faker
+# просто для того чтобы в pycharm нормальный терминал был
+ipython
+# генерация случайных моделей в базе
+factory_boy
+mock
+pytest-env
+
+# Пакеты для backend-разработчиков (в основном прехуки)
+black
+isort
+flake8
+pip-tools
+isort
+pre-commit
+coverage
