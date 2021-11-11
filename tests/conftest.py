@@ -51,14 +51,9 @@ def setup_factories(sqlalchemy_session):
 @pytest.fixture
 def mixer(sqlalchemy_connection):
     # thirdparty
-    from mixer.backend.flask import mixer
+    from mixer.backend.flask import Mixer
 
-    mixer.init_app(app)
-    yield mixer
+    no_commit_mixer = Mixer(commit=False)
+    no_commit_mixer.init_app(app)
 
-    sqlalchemy_connection.execute("delete from basket_item")
-    sqlalchemy_connection.execute("delete from basket")
-    sqlalchemy_connection.execute("delete from user")
-
-    sqlalchemy_connection._transaction.commit()
-    sqlalchemy_connection.close()
+    yield no_commit_mixer
