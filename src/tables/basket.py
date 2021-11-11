@@ -14,7 +14,7 @@ class Basket(db.Model):
         db.Integer,
         db.ForeignKey("user.id"),
     )
-    user = db.relationship("src.tables.user.User", back_populates="baskets")
+    user = db.relationship("User", back_populates="baskets")
 
     pickup = db.Column(db.Boolean, comment="Самовывоз")
 

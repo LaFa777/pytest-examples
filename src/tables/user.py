@@ -10,7 +10,7 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
 
     baskets = db.relationship(
-        "src.tables.basket.Basket",
+        "Basket",
         back_populates="user",
         lazy="dynamic",
     )
