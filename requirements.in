@@ -13,6 +13,8 @@ ipython
 factory_boy
 mock
 pytest-env
+pytest-factoryboy
+mixer
 
 # Пакеты для backend-разработчиков (в основном прехуки)
 black

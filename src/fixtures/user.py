@@ -11,3 +11,6 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
 
     class Meta:
         model = tables.User
+
+    class Params:
+        marina = factory.Trait(username="Марина")

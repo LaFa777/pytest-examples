@@ -29,3 +29,12 @@ repos:
     rev: ''
     hooks:
       - id: flake8
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: venv/Scripts/python.exe -m pytest
+        language: script
+        pass_filenames: false
+        types: [python]

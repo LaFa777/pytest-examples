@@ -11,6 +11,17 @@ from src.tables import Basket, BasketItem, User  # noqa
 pytestmark = pytest.mark.usefixtures("app_create")
 
 
+def test_create_user(sqlalchemy_session):
+    user = User(username="Валера")
+    sqlalchemy_session.merge(user)
+
+    # #### В базу сохранили, теперь проверяем, что мы не наврали.
+
+    user_db = sqlalchemy_session.query(User).first()
+
+    assert user_db.username == user.username
+
+
 def test_create_basket_with_items(sqlalchemy_session):
     user = User(
         username="Кирилл",

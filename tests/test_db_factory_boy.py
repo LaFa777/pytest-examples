@@ -39,9 +39,26 @@ def test_create_basket(sqlalchemy_session, basket, user):
     assert basket_db.user == user
 
 
+def test_create_user_with_factory(sqlalchemy_session):
+    user = fixtures.UserFactory(username="Олеся")
+
+    user_db = sqlalchemy_session.query(User).first()
+    assert user == user_db
+    assert user_db.username == user.username
+
+
 def test_create_basket_item(sqlalchemy_session):
     item = fixtures.BasketItemFactory()
 
     basket_item_db = sqlalchemy_session.query(BasketItem).first()
     assert basket_item_db == item
     assert basket_item_db.price == item.price
+
+
+def test_create_user_with_factory_trait(sqlalchemy_session):
+    user_marina = fixtures.UserFactory(marina=True)
+
+    user_db = sqlalchemy_session.query(User).first()
+    assert user_marina == user_db
+    assert user_marina.username == "Марина"
+    assert user_db.username == "Марина"

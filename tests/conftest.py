@@ -33,9 +33,11 @@ def sqlalchemy_session():
 def sqlalchemy_connection():
     connection = sqlalchemy.get_connection()
 
+    transaction = connection.begin()
     yield connection
+    transaction.rollback()
+    transaction.close()
 
-    connection.rollback()
     connection.close()
 
 
@@ -44,3 +46,19 @@ def setup_factories(sqlalchemy_session):
     fixtures.UserFactory._meta.sqlalchemy_session = sqlalchemy_session
     fixtures.BasketFactory._meta.sqlalchemy_session = sqlalchemy_session
     fixtures.BasketItemFactory._meta.sqlalchemy_session = sqlalchemy_session
+
+
+@pytest.fixture
+def mixer(sqlalchemy_connection):
+    # thirdparty
+    from mixer.backend.flask import mixer
+
+    mixer.init_app(app)
+    yield mixer
+
+    sqlalchemy_connection.execute("delete from basket_item")
+    sqlalchemy_connection.execute("delete from basket")
+    sqlalchemy_connection.execute("delete from user")
+
+    sqlalchemy_connection._transaction.commit()
+    sqlalchemy_connection.close()
