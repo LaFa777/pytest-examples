@@ -57,3 +57,12 @@ def mixer(sqlalchemy_connection):
     no_commit_mixer.init_app(app)
 
     yield no_commit_mixer
+
+
+@pytest.fixture
+def test_client():
+    """
+    Фикстура для тестирования вьюх
+    """
+    test_client = app.test_client()
+    yield test_client

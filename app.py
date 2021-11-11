@@ -7,6 +7,7 @@ from flask import Flask
 # project
 from src import extensions
 from src.tables import *  # noqa
+from src.views import pytest_routes
 
 app = Flask(__name__)
 
@@ -27,3 +28,6 @@ def register_extensions(app):
 
 
 register_extensions(app)
+
+# регистрируем view
+app.register_blueprint(pytest_routes)
