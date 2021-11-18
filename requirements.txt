@@ -9,7 +9,9 @@ alembic==1.7.4
 atomicwrites==1.4.0
     # via pytest
 attrs==21.2.0
-    # via pytest
+    # via
+    #   hypothesis
+    #   pytest
 backcall==0.2.0
     # via ipython
 backports.entry-points-selectable==1.1.0
@@ -34,6 +36,8 @@ decorator==5.1.0
     # via ipython
 distlib==0.3.3
     # via virtualenv
+execnet==1.9.0
+    # via pytest-xdist
 factory-boy==3.2.0
     # via
     #   -r requirements.in
@@ -60,6 +64,8 @@ flask-sqlalchemy==2.5.1
     #   flask-migrate
 greenlet==1.1.2
     # via sqlalchemy
+hypothesis==6.24.6
+    # via -r requirements.in
 identify==2.3.0
     # via pre-commit
 inflection==0.5.1
@@ -117,7 +123,9 @@ pre-commit==2.15.0
 prompt-toolkit==3.0.20
     # via ipython
 py==1.10.0
-    # via pytest
+    # via
+    #   pytest
+    #   pytest-forked
 pycodestyle==2.8.0
     # via flake8
 pyflakes==2.4.0
@@ -131,9 +139,15 @@ pytest==6.2.5
     #   -r requirements.in
     #   pytest-env
     #   pytest-factoryboy
+    #   pytest-forked
+    #   pytest-xdist
 pytest-env==0.6.2
     # via -r requirements.in
 pytest-factoryboy==2.1.0
+    # via -r requirements.in
+pytest-forked==1.3.0
+    # via pytest-xdist
+pytest-xdist==2.4.0
     # via -r requirements.in
 python-dateutil==2.8.2
     # via faker
@@ -145,6 +159,8 @@ six==1.16.0
     # via
     #   python-dateutil
     #   virtualenv
+sortedcontainers==2.4.0
+    # via hypothesis
 sqlalchemy==1.4.26
     # via
     #   alembic

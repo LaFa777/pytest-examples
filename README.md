@@ -13,6 +13,11 @@ set STAGE=pytest&& flask db upgrade
 pytest
 ```
 
+1. Запуск тестов в многопоточном режиме (через плагин pytest-xdist)
+```bash
+pytest -n {num_cpu}
+```
+
 # FAQ
 
 ## Что такое pytest ???

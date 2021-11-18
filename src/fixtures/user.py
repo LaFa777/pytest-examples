@@ -13,4 +13,4 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = tables.User
 
     class Params:
-        marina = factory.Trait(username="Марина")
+        doge = factory.Trait(username="Качок доге")

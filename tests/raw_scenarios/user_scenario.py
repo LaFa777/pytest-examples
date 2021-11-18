@@ -6,14 +6,26 @@ from sqlalchemy.orm import Session
 from tests.raw_scenarios.scenario import BaseScenario
 
 
+def get_uniq_num():
+    get_uniq_num.start_num += 1
+    return get_uniq_num.start_num
+
+
+get_uniq_num.start_num = Faker().pyint(min_value=0, max_value=999)
+
+
 class UserScenario(BaseScenario):
     def insert_sql(self):
         return "INSERT INTO user (id, username) VALUES (:id, :username) RETURNING id"
 
     def generate_data(self, session: Session):
         yield {
-            "id": Faker().pyint(min_value=0, max_value=9999999),
-            "username": Faker().first_name(),
+            "id": get_uniq_num(),
+            # т.к. у нас уникальный ключ по username, то мы не можем гарантировать уникальной
+            # значений следующей строкой
+            # "username": Faker().first_name(),
+            # а так можем
+            "username": Faker().uuid4(),
         }
 
 
