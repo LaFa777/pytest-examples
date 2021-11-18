@@ -14,7 +14,9 @@ def test_home_page(test_client):
 
 
 def test_get_username(sqlalchemy_session, test_client, user):
-    with patch("src.utils.sqlalchemy.get_session") as session_mock:
+    # в файле произошел импорт метода get_session, поэтому нужно указать так
+    # т.е. patch("src.utils.sqlalchemy.get_session") тут не сработает
+    with patch("src.views.get_session") as session_mock:
         session_mock.return_value = sqlalchemy_session
         response = test_client.get(f"/pytest/user/{user.id}/username")
 
